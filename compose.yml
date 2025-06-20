@@ -1,0 +1,15 @@
+services:
+  podsync:
+    container_name: podsync
+    image: openbytedev/opodsync:latest
+    volumes:
+      - type: bind
+        source: ./db
+        target: /app/db
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    restart: unless-stopped
+    # add user with: docker exec -it podsync /app/scripts/add-user.sh [username]
