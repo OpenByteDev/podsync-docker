@@ -1,7 +1,7 @@
 services:
   podsync:
     container_name: podsync
-    image: openbytedev/opodsync:latest
+    image: openbytedev/podsync:latest
     volumes:
       - type: bind
         source: ./db
