@@ -1,18 +1,18 @@
 # ---- Build Stage ----
-FROM rust:1.87-alpine3.22 AS builder
+FROM rust:1.95-alpine3.23 AS builder
 
 # Install git and build-base
 RUN apk add --no-cache git build-base
 
 # Clone repository
-RUN git clone --depth 1 --branch v0.1.11 https://github.com/bobrippling/podsync/
+RUN git clone --depth 1 --branch v1.0.3 https://github.com/bobrippling/podsync/
 WORKDIR /podsync
 
 # Build binary
 RUN cargo build --release --features backend-sql
 
 # ---- Runtime Stage ----
-FROM alpine:3.22
+FROM alpine:3.23
 
 # Install sqlite3 (required to run add-user.sh)
 RUN apk add --no-cache sqlite
